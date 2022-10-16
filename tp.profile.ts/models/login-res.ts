@@ -22,11 +22,11 @@ export interface LoginRes {
      * @type {string}
      * @memberof LoginRes
      */
-    token?: string | null;
+    token: string;
     /**
      * 
      * @type {string}
      * @memberof LoginRes
      */
-    refreshToken?: string | null;
+    refreshToken: string;
 }

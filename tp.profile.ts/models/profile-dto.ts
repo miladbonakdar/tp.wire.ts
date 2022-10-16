@@ -26,25 +26,25 @@ export interface ProfileDto {
      * @type {string}
      * @memberof ProfileDto
      */
-    id?: string | null;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof ProfileDto
      */
-    name?: string | null;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof ProfileDto
      */
-    lastname?: string | null;
+    lastname: string;
     /**
      * 
      * @type {string}
      * @memberof ProfileDto
      */
-    email?: string | null;
+    email: string;
     /**
      * 
      * @type {string}

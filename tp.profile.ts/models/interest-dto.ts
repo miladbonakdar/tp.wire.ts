@@ -22,19 +22,19 @@ export interface InterestDto {
      * @type {string}
      * @memberof InterestDto
      */
-    id?: string | null;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof InterestDto
      */
-    key?: string | null;
+    key: string;
     /**
      * 
      * @type {string}
      * @memberof InterestDto
      */
-    name?: string | null;
+    name: string;
     /**
      * 
      * @type {number}
