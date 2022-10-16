@@ -1,0 +1,28 @@
+{
+  "name": "@miladbonakdar/profile.wire.ts",
+  "version": "1.0.0",
+  "description": "OpenAPI client for profile service",
+  "author": "Milad Bonakdar",
+  "keywords": [
+    "axios",
+    "typescript"
+  ],
+  "license": "Unlicense",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  },
+  "repository": "github:miladbonakdar/tp.wire.ts",
+  "scripts": {
+    "build": "tsc --outDir dist/",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.11.5",
+    "typescript": "^3.6.4"
+  }
+}
