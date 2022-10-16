@@ -1,6 +1,6 @@
 {
   "name": "@miladbonakdar/profile.wire.ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "OpenAPI client for profile service",
   "author": "Milad Bonakdar",
   "keywords": [
@@ -11,7 +11,7 @@
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": "github:miladbonakdar/tp.wire.ts",
   "scripts": {
