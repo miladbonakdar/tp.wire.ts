@@ -5,5 +5,6 @@ java -jar swagger-codegen-cli-3.0.35.jar generate -i http://localhost:4001/swagg
 
 ```bash
 yarn version
+yarn install
 npm publish
 ```
