@@ -18,7 +18,9 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { EmptyResponse } from '../models';
 import { OtpForgetPasswordRes } from '../models';
+import { SendEmailVerifyRes } from '../models';
 import { UpdatePasswordReq } from '../models';
+import { ValidateEmailReq } from '../models';
 import { ValidateOtpUpdatePasswordReq } from '../models';
 import { ValidatePhoneVerificationReq } from '../models';
 import { VerifyPhoneReq } from '../models';
@@ -29,6 +31,81 @@ import { VerifyPhoneRes } from '../models';
  */
 export const ProfileSecurityApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {ValidateEmailReq} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        profileSecurityEmailVerifyPatch: async (body?: ValidateEmailReq, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/ProfileSecurity/EmailVerify`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        profileSecuritySendEmailVerifyRequestPost: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/ProfileSecurity/SendEmailVerifyRequest`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {*} [options] Override http request option.
@@ -235,6 +312,31 @@ export const ProfileSecurityApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {ValidateEmailReq} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async profileSecurityEmailVerifyPatch(body?: ValidateEmailReq, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<EmptyResponse>>> {
+            const localVarAxiosArgs = await ProfileSecurityApiAxiosParamCreator(configuration).profileSecurityEmailVerifyPatch(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async profileSecuritySendEmailVerifyRequestPost(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<SendEmailVerifyRes>>> {
+            const localVarAxiosArgs = await ProfileSecurityApiAxiosParamCreator(configuration).profileSecuritySendEmailVerifyRequestPost(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -308,6 +410,23 @@ export const ProfileSecurityApiFactory = function (configuration?: Configuration
     return {
         /**
          * 
+         * @param {ValidateEmailReq} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async profileSecurityEmailVerifyPatch(body?: ValidateEmailReq, options?: AxiosRequestConfig): Promise<AxiosResponse<EmptyResponse>> {
+            return ProfileSecurityApiFp(configuration).profileSecurityEmailVerifyPatch(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async profileSecuritySendEmailVerifyRequestPost(options?: AxiosRequestConfig): Promise<AxiosResponse<SendEmailVerifyRes>> {
+            return ProfileSecurityApiFp(configuration).profileSecuritySendEmailVerifyRequestPost(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -360,6 +479,25 @@ export const ProfileSecurityApiFactory = function (configuration?: Configuration
  * @extends {BaseAPI}
  */
 export class ProfileSecurityApi extends BaseAPI {
+    /**
+     * 
+     * @param {ValidateEmailReq} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProfileSecurityApi
+     */
+    public async profileSecurityEmailVerifyPatch(body?: ValidateEmailReq, options?: AxiosRequestConfig) : Promise<AxiosResponse<EmptyResponse>> {
+        return ProfileSecurityApiFp(this.configuration).profileSecurityEmailVerifyPatch(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProfileSecurityApi
+     */
+    public async profileSecuritySendEmailVerifyRequestPost(options?: AxiosRequestConfig) : Promise<AxiosResponse<SendEmailVerifyRes>> {
+        return ProfileSecurityApiFp(this.configuration).profileSecuritySendEmailVerifyRequestPost(options).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * 
      * @param {*} [options] Override http request option.
