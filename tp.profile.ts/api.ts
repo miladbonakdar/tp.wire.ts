@@ -11,6 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */export * from './apis/admin-auth-api';
+export * from './apis/assistant-listing-api';
 export * from './apis/health-api';
 export * from './apis/interest-api';
 export * from './apis/profile-api';

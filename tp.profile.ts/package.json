@@ -5,15 +5,14 @@
   "author": "Milad Bonakdar",
   "keywords": [
     "axios",
-    "typescript"
+    "typescript",
+    "openapi-client",
+    "openapi-generator",
+    ""
   ],
   "license": "Unlicense",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
-  "repository": "github:miladbonakdar/tp.wire.ts",
   "scripts": {
     "build": "tsc --outDir dist/",
     "prepublishOnly": "npm run build"
@@ -24,5 +23,9 @@
   "devDependencies": {
     "@types/node": "^12.11.5",
     "typescript": "^3.6.4"
-  }
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": "github:miladbonakdar/tp.wire.ts"
 }

@@ -1,4 +1,7 @@
 export * from './add-interest-req';
+export * from './assistant-list-item';
+export * from './assistant-listing-req';
+export * from './assistant-listing-res';
 export * from './can-be-assistant-res';
 export * from './email-password-login-req';
 export * from './empty-response';

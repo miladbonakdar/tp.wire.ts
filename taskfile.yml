@@ -1,0 +1,19 @@
+version: '3'
+
+tasks:
+  gen-profile:
+    cmds:
+      - java -jar swagger-codegen-cli-3.0.35.jar generate -i http://localhost:4001/swagger/v1/swagger.json  -l typescript-axios -o ~/repos/tp.wire.ts/tp.profile.ts
+
+  package-profile:
+    deps : [gen-profile]
+    desc: generate profile node package and build with specific version 
+    cmds:
+      - node scripts/adjust-package-jason.js tp.profile.ts {{.CLI_ARGS}}
+
+  profile:
+    deps : [package-profile]
+    dir: tp.profile.ts
+    cmds:
+      - yarn install
+      - yarn build

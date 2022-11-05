@@ -1,10 +1,7 @@
-
-```shell
-java -jar swagger-codegen-cli-3.0.35.jar generate -i http://localhost:4001/swagger/v1/swagger.json  -l typescript-axios -o /home/milad/RiderProjects/tp.wire.ts/TEMP
-```
-
+##Commands of task file 
 ```bash
-yarn version
-yarn install
-npm publish
-```
+# generate package with version, can be something like 1.0.1
+task profile -- VERSION
+``` 
+
+> After running package task, go to package dir and run `npm publish`
