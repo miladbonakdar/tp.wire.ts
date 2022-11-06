@@ -1,6 +1,6 @@
 {
   "name": "@miladbonakdar/profile.wire.ts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "OpenAPI client for profile service",
   "author": "Milad Bonakdar",
   "keywords": [

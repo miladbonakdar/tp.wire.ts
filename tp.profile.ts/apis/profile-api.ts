@@ -102,6 +102,41 @@ export const ProfileApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        profileLoadProfileGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/Profile/LoadProfile`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         profileMeGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/Profile/Me`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -335,6 +370,18 @@ export const ProfileApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        async profileLoadProfileGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<ProfileDto>>> {
+            const localVarAxiosArgs = await ProfileApiAxiosParamCreator(configuration).profileLoadProfileGet(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         async profileMeGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<ProfileDto>>> {
             const localVarAxiosArgs = await ProfileApiAxiosParamCreator(configuration).profileMeGet(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
@@ -424,6 +471,14 @@ export const ProfileApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        async profileLoadProfileGet(options?: AxiosRequestConfig): Promise<AxiosResponse<ProfileDto>> {
+            return ProfileApiFp(configuration).profileLoadProfileGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         async profileMeGet(options?: AxiosRequestConfig): Promise<AxiosResponse<ProfileDto>> {
             return ProfileApiFp(configuration).profileMeGet(options).then((request) => request(axios, basePath));
         },
@@ -490,6 +545,15 @@ export class ProfileApi extends BaseAPI {
      */
     public async profileConvertToAssistantPost(options?: AxiosRequestConfig) : Promise<AxiosResponse<EmptyResponse>> {
         return ProfileApiFp(this.configuration).profileConvertToAssistantPost(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProfileApi
+     */
+    public async profileLoadProfileGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<ProfileDto>> {
+        return ProfileApiFp(this.configuration).profileLoadProfileGet(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
